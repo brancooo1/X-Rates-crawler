@@ -2,7 +2,7 @@
 This is a simple Srapy python crawler to get USD currency exchange rates from the x-rates.com.
 We will use here scrapy crawler and sqlite3 database in which we'll save all the crawled data.
 This Scrapy crawler is written in just one simple file and fully commented in order to make it as clear as possible.
-The crawler is run from python script (against proper way of building Scrapy crawler - directory hierarchy, runned by scrapy crawl xxx)
+The crawler is run from python script as one of [possible way to build crawler](https://doc.scrapy.org/en/latest/topics/practices.html) (against proper way of building Scrapy crawler - full directory hierarchy, run by bash "scrapy crawl xxx" etc)
 
 To make Scrapy working from just one file, first we have to define Scrapy Items to be crawled:
 ```
@@ -39,7 +39,7 @@ class XratesSpider(scrapy.Spider):
             db.commit() # Save the changes
 ```
 
-And we will store our crawled data in sqlite3 database 
+And we will store our crawled data in sqlite3 database:
 ```
 class Database():   # Database class with basic methods
     def __init__(self):
@@ -59,7 +59,7 @@ class Database():   # Database class with basic methods
         self.conn.close()
 ```
 
-Finally main method for run the crawling
+Finally main method for run the crawling:
 ```
 if __name__ == '__main__':
     db = Database()
@@ -75,3 +75,4 @@ if __name__ == '__main__':
 ```
 
 
+(School project)
