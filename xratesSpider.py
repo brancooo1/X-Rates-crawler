@@ -7,7 +7,10 @@ from scrapy.utils.log import configure_logging
 import sqlite3
 import os
 
-class Database():   # Database class with basic methods
+class Database():
+    '''
+    Class for interacting with sqlite3 database and basic methods.
+    '''
     def __init__(self):
         self.conn = sqlite3.connect(os.getcwd() + '/xrates.db') # Creating database and its connection in current working directory
         self.c = self.conn.cursor()
@@ -24,13 +27,19 @@ class Database():   # Database class with basic methods
     def close(self):
         self.conn.close()
 
-class XratesItem(scrapy.Item):  # Scrapy class where data will be filled
+class XratesItem(scrapy.Item):
+    '''
+    Class Scrapy blueprint for crawled data. Scrapy class where data will be filled.
+    '''
     date = scrapy.Field()   # Current date
     name = scrapy.Field()   # Name of the currency
     sell = scrapy.Field()   # Sell price
     buy = scrapy.Field()    # Buy price
 
 class XratesSpider(scrapy.Spider):
+    '''
+    Spider Scrapy crawler to get the currency exchange rates from x-rates.com.
+    '''
     name = "Xrates" # Name of the crawler
     baseURL = "http://x-rates.com/historical/?from=USD&amount=1&date="  # Add date in format 2016-12-12
     beginDate = datetime(2016, 12, 1).date()    # Crawl from this date
